@@ -16,6 +16,12 @@ class _OtherPageState extends State<OtherPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Other Page'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop(widget.data);
+          },
+        ),
       ),
       body: Center(
         child: Column(

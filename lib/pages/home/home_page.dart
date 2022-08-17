@@ -10,6 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int? data = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,15 +18,25 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Home Page'),
       ),
       body: Center(
-        child: MaterialButton(
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const OtherPage(
-                      data: 456,
-                    )));
-          },
-          color: Colors.red,
-          child: const Text('Other'),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              data.toString(),
+              style: Theme.of(context).textTheme.headline3,
+            ),
+            MaterialButton(
+              onPressed: () async {
+                data = await Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const OtherPage(
+                          data: 456,
+                        )));
+                setState(() {});
+              },
+              color: Colors.red,
+              child: Text('Other $data'),
+            ),
+          ],
         ),
       ),
     );
